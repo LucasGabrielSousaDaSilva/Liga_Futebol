@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<h1>Liga Tabajara de Futebol</h1>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<br/>
+
+<main>
+    <section>
+        <h2>Bem-vindo à Liga Tabajara de Futebol!</h2>
+        <p>Esta é uma plataforma dedicada a acompanhar os jogos e jogadores da liga.</p>
+
+        <h2>Status da Liga:</h2>
+        @if (ViewBag.Status)
+        {
+            <span style="color:green; font-weight:bold;">Apta para iniciar o campeonato!</span>
+        }
+        else
+        {
+            <span style="color:red; font-weight:bold;">Não apta para iniciar o campeonato!</span>
+        }
+    </section>
+    <section>
+        <h2>Times Participantes</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Estádio</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var time in Model)
+                {
+                    <tr>
+                        <td>@time.Nome</td>
+                        <td>@time.Cidade</td>
+                        <td>@time.Estado</td>
+                        <td>@time.EstadioTime</td>
+                        <td>
+                            @Html.ActionLink("Ver detalhes", "Details", "Time", new { id = time.Id }, new { @class = "btn btn-primary btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </section>
+        <section>
+            <h3>Últimos Jogos</h3>
+
+
+            <!-- Aqui você pode adicionar uma lista ou tabela com os últimos jogos -->
+        </section>
+        <section>
+            <h3>Jogadores em Destaque</h3>
+            <!-- Aqui você pode adicionar uma lista ou tabela com os jogadores em destaque -->
+        </section>
+</main>
