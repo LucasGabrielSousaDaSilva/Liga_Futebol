@@ -1,0 +1,105 @@
+﻿@model List<Futebol.Models.RankingArtilheiroViewModel>
+
+@{
+    ViewBag.Title = "Ranking de Artilheiros";
+    var top3 = Model.Take(3).ToList();
+    var outros = Model.Skip(3).ToList();
+}
+
+<style>
+    .podium .card {
+        min-height: 180px;
+        border-radius: 1rem;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .podium .scale-up {
+        transform: scale(1.1);
+        z-index: 2;
+    }
+
+    .podium .card:hover {
+        transform: scale(1.05);
+    }
+
+    h2, h4 {
+        font-weight: 700;
+    }
+    body {
+        background-color: #0b8708;
+    }
+</style>
+
+
+<!-- Bootstrap Icons (se ainda não estiver no layout) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+<h2 class="text-center my-4 text-primary">🏆 Ranking de Artilheiros</h2>
+
+<div class="container mb-5">
+    <div class="row justify-content-center align-items-end g-4 podium">
+        <div class="col-md-3 text-center">
+            <div class="card bg-secondary text-white shadow-lg border-0">
+                <div class="card-body">
+                    <h5 class="card-title mb-1">🥈 2º Lugar</h5>
+                    <h6>@top3.ElementAtOrDefault(1).JogadorNome</h6>
+                    <p class="mb-1"><small>@top3.ElementAtOrDefault(1).TimeNome</small></p>
+                    <span class="badge bg-light text-dark">@top3.ElementAtOrDefault(1).TotalGols gols</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 text-center">
+            <div class="card bg-warning text-dark shadow-lg border-0 scale-up">
+                <div class="card-body">
+                    <h5 class="card-title mb-1">🥇 1º Lugar</h5>
+                    <h6>@top3.ElementAtOrDefault(0).JogadorNome</h6>
+                    <p class="mb-1"><small>@top3.ElementAtOrDefault(0).TimeNome</small></p>
+                    <span class="badge bg-dark text-light">@top3.ElementAtOrDefault(0).TotalGols gols</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 text-center">
+            <div class="card bg-info text-white shadow-lg border-0">
+                <div class="card-body">
+                    <h5 class="card-title mb-1">🥉 3º Lugar</h5>
+                    <h6>@top3.ElementAtOrDefault(2).JogadorNome</h6>
+                    <p class="mb-1"><small>@top3.ElementAtOrDefault(2).TimeNome</small></p>
+                    <span class="badge bg-light text-dark">@top3.ElementAtOrDefault(2).TotalGols gols</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (outros.Any())
+{
+    <div class="container mt-4">
+        <h4 class="text-light mb-3">Outros Artilheiros</h4>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered text-center bg-white shadow-sm rounded">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Posição</th>
+                        <th>Jogador</th>
+                        <th>Time</th>
+                        <th>Gols</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < outros.Count; i++)
+                    {
+                        var jogador = outros[i];
+                        <tr>
+                            <td>@(i + 4)º</td>
+                            <td>@jogador.JogadorNome</td>
+                            <td>@jogador.TimeNome</td>
+                            <td>@jogador.TotalGols</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

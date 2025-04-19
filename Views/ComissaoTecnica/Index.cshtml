@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Liga_Futebol.Models.ComissaoTecnica>
+
+@{
+    ViewBag.Title = "Comissão Técnica";
+}
+
+<style>
+    body {
+        background-color: #0b8708;
+    }
+</style>
+
+<!-- Bootstrap Icons CDN (adicione no _Layout.cshtml uma vez só se ainda não tiver) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+    <h2 class="text-dark">Comissão Técnica</h2>
+    @Html.ActionLink("Nova Comissão", "Create", null, new { @class = "btn btn-success" })
+</div>
+
+<!-- Formulário de busca -->
+@using (Html.BeginForm("Index", "ComissaoTecnica", FormMethod.Get, new { @class = "row g-2 mb-4" }))
+{
+    <div class="col-md-4">
+        @Html.Label("Nome", htmlAttributes: new { @class = "form-label text-light" })
+        @Html.TextBox("searchNome", Request.QueryString["searchNome"], new { @class = "form-control", placeholder = "Nome da Comissão" })
+    </div>
+    <div class="col-md-4">
+        @Html.Label("Cargo", htmlAttributes: new { @class = "form-label text-light" })
+        @Html.DropDownList("searchCargo",
+            new SelectList(Enum.GetValues(typeof(Liga_Futebol.Models.Cargo))),
+            "Todos",
+            new { @class = "form-select" })
+    </div>
+    <div class="col-md-4 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">
+            <i class="bi bi-search"></i> Buscar
+        </button>
+    </div>
+}
+
+<!-- Tabela -->
+<div class="table-responsive">
+    <table class="table table-dark table-striped table-bordered shadow-sm">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Time.Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.First().DataNascimento)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Cargo)</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Time.Nome</td>
+                    <td>@item.Nome</td>
+                    <td>@item.DataNascimento.ToString("dd/MM/yyyy")</td>
+                    <td>@item.Cargo</td>
+                    <td class="text-center">
+                        @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-warning me-1 bi bi-pencil-square", title = "Editar" })
+                        @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-info me-1 bi bi-eye-fill", title = "Detalhes" })
+                        @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger bi bi-trash", title = "Excluir" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

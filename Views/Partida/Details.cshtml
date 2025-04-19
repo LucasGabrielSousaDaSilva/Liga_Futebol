@@ -1,0 +1,111 @@
+﻿@model Liga_Futebol.Models.Partida
+
+@{
+    ViewBag.Title = "Detalhes da Partida";
+}
+<style>
+    body {
+        background-color: #0b8708; /* fundo geral verde */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 p-4 bg-light">
+        <h2 class="text-center text-primary mb-4">📅 Detalhes da Partida</h2>
+
+        <div class="text-center mb-4">
+            <h3>
+                <span class="fw-bold">@Model.TimeCasa.Nome</span>
+                <span class="mx-3 display-6"> @Model.GolsTimeCasa x @Model.GolsTimeFora </span>
+                <span class="fw-bold">@Model.TimeFora.Nome</span>
+            </h3>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <strong>📍 Local:</strong>
+                <p class="form-control-plaintext text-secondary">@Model.Local</p>
+            </div>
+            <div class="col-md-6">
+                <strong>📆 Data:</strong>
+                <p class="form-control-plaintext text-secondary">@Model.Data.ToString("dd/MM/yyyy")</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <strong>🎯 Resultado:</strong>
+                <p class="form-control-plaintext text-secondary">@Model.Resultado</p>
+            </div>
+            <div class="col-md-6">
+                <strong>🔁 Rodada:</strong>
+                <p class="form-control-plaintext text-secondary">@Model.Rodada</p>
+            </div>
+        </div>
+
+        @if (Model.Estatisticas != null && Model.Estatisticas.Any())
+        {
+            var estatisticasFora = Model.Estatisticas.Where(e => e.TimeId == Model.TimeForaId).ToList();
+            var estatisticasCasa = Model.Estatisticas.Where(e => e.TimeId == Model.TimeCasaId).ToList();
+
+            int golsCasa = estatisticasCasa.Sum(e => e.GolsMarcados);
+            int golsFora = estatisticasFora.Sum(e => e.GolsMarcados);
+            int assistCasa = estatisticasCasa.Sum(e => e.Asistencias);
+            int assistFora = estatisticasFora.Sum(e => e.Asistencias);
+            int amarelosCasa = estatisticasCasa.Sum(e => e.CartoesAmarelos);
+            int amarelosFora = estatisticasFora.Sum(e => e.CartoesAmarelos);
+            int vermelhosCasa = estatisticasCasa.Sum(e => e.CartoesVermelhos);
+            int vermelhosFora = estatisticasFora.Sum(e => e.CartoesVermelhos);
+
+            <hr class="my-4" />
+            <h3 class="text-center text-dark mb-4">📊 Comparativo de Estatísticas</h3>
+
+            if (Model.TimeCasa != null && Model.TimeFora != null)
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center bg-white shadow-sm">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>@Model.TimeCasa.Nome</th>
+                                <th>Estatística</th>
+                                <th>@Model.TimeFora.Nome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.GolsTimeCasa</td>
+                                <td>⚽ Gols</td>
+                                <td>@Model.GolsTimeFora</td>
+                            </tr>
+                            <tr>
+                                <td>@assistCasa</td>
+                                <td>🎯 Assistências</td>
+                                <td>@assistFora</td>
+                            </tr>
+                            <tr>
+                                <td>@amarelosCasa</td>
+                                <td>🟨 Amarelos</td>
+                                <td>@amarelosFora</td>
+                            </tr>
+                            <tr>
+                                <td>@vermelhosCasa</td>
+                                <td>🟥 Vermelhos</td>
+                                <td>@vermelhosFora</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="text-danger">Informações de um ou ambos os times estão indisponíveis.</p>
+            }
+
+        }
+
+        <div class="mt-4 text-center">
+            @Html.ActionLink("✏️ Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning me-2" })
+            @Html.ActionLink("⬅️ Voltar", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+</div>

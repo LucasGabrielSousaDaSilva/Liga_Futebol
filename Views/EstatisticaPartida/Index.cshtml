@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Liga_Futebol.Models.EstatisticaPartida>
+
+@{
+    ViewBag.Title = "Estatísticas das Partidas";
+}
+
+<style>
+    body {
+        background-color: #0b8708;
+    }
+</style>
+
+<!-- Bootstrap Icons (se ainda não tiver no _Layout.cshtml) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-dark">Estatísticas das Partidas</h2>
+        @Html.ActionLink("Nova Estatística", "Create", null, new { @class = "btn btn-success" })
+    </div>
+
+    <div class="table-responsive bg-dark p-3 rounded shadow-sm">
+        <table class="table table-dark table-striped table-bordered align-middle text-center mb-0">
+            <thead class="table-secondary text-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.First().Jogador.Nome)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Partida.Local)</th>
+                    <th>Time</th>
+                    <th>@Html.DisplayNameFor(model => model.First().GolsMarcados)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().GolsSofridos)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Asistencias)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().CartoesAmarelos)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().CartoesVermelhos)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Jogador.Nome</td>
+                        <td>@item.Partida.Local</td>
+                        <td>@item.Time.Nome</td>
+                        <td>@item.GolsMarcados</td>
+                        <td>@item.GolsSofridos</td>
+                        <td>@item.Asistencias</td>
+                        <td>@item.CartoesAmarelos</td>
+                        <td>@item.CartoesVermelhos</td>
+                        <td>
+                            <div class="d-flex justify-content-center gap-1">
+                                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-warning bi bi-pencil-square", title = "Editar" })
+                                @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "btn btn-sm btn-info bi bi-eye-fill", title = "Detalhes" })
+                                @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger bi bi-trash", title = "Excluir" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
