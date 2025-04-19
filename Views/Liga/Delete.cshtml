@@ -1,0 +1,58 @@
+﻿@model Liga_Futebol.Models.Liga
+
+@{
+    ViewBag.Title = "Excluir Liga";
+}
+
+<h2 class="text-center">Excluir Liga</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Confirmação de Exclusão</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="text-center mb-4">Tem certeza de que deseja excluir esta liga?</h5>
+                    <dl class="row">
+                        <dt class="col-sm-4">Nome</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Nome)</dd>
+
+                        <dt class="col-sm-4">Data de Início</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.DataInicio)</dd>
+
+                        <dt class="col-sm-4">Data de Fim</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.DataFim)</dd>
+
+                        <dt class="col-sm-4">Localização</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Localizacao)</dd>
+
+                        <dt class="col-sm-4">Número de Times</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.NumeroTimes)</dd>
+
+                        <dt class="col-sm-4">Rodadas</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Rodadas)</dd>
+
+                        <dt class="col-sm-4">Partidas por Rodada</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.PartidasPorRodada)</dd>
+
+                        <dt class="col-sm-4">Tipo de Competição</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.TipoCompeticao)</dd>
+
+                        <dt class="col-sm-4">Status</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Status)</dd>
+                    </dl>
+                </div>
+                <div class="card-footer text-end">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                        <a href="@Url.Action("Index", "Liga")" class="btn btn-secondary">Cancelar</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+﻿@model Liga_Futebol.Models.Jogador
+
+@{
+    ViewBag.Title = "Adicionar Jogador";
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-4 shadow-lg rounded-4 bg-light" style="min-width: 600px; max-width: 700px; width: 100%;">
+        <h2 class="text-center text-success mb-4">⚽ Adicionar Novo Jogador</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Nacionalidade, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.Nacionalidade, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nacionalidade, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Posicao, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EnumDropDownListFor(model => model.Posicao, new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.Posicao, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.NumCamisa, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.NumCamisa, new { htmlAttributes = new { @class = "form-control", type = "number", min = "1" } })
+                @Html.ValidationMessageFor(model => model.NumCamisa, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Altura, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.Altura, new { htmlAttributes = new { @class = "form-control", step = "0.01" } })
+                @Html.ValidationMessageFor(model => model.Altura, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Peso, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.Peso, new { htmlAttributes = new { @class = "form-control", step = "0.1" } })
+                @Html.ValidationMessageFor(model => model.Peso, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.PePreferido, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EnumDropDownListFor(model => model.PePreferido, new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.PePreferido, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-4">
+                @Html.LabelFor(model => model.TimeId, "Time", htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.DropDownList("TimeId", null, htmlAttributes: new { @class = "form-select" })
+                @Html.ValidationMessageFor(model => model.TimeId, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="d-grid gap-2">
+                <input type="submit" value="✅ Cadastrar Jogador" class="btn btn-success fw-bold" />
+                @Html.ActionLink("⬅️ Voltar à Lista", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

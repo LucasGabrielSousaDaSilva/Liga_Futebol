@@ -1,0 +1,145 @@
+﻿@model IEnumerable<Liga_Futebol.Models.Partida>
+
+@{
+    ViewBag.Title = "Partidas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Bootstrap e Font Awesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<style>
+    body {
+        background-color: #0b8708; /* fundo geral verde */
+    }
+
+    .container-fluid {
+        padding: 20px;
+        width: 100%;
+    }
+
+    .conteudo-branco {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+    }
+
+    .table td,
+    .table th {
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    .thead-dark th {
+        background-color: #343a40;
+        color: white;
+    }
+
+    .btn-sm i {
+        pointer-events: none;
+    }
+
+    .table-responsive {
+        max-height: 75vh;
+        overflow-y: auto;
+        width: 100%;
+    }
+
+    .alert i {
+        margin-right: 5px;
+    }
+
+    .btn-outline-primary:hover,
+    .btn-outline-info:hover,
+    .btn-outline-danger:hover {
+        opacity: 0.9;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="conteudo-branco">
+
+        <!-- Mensagens -->
+        @if (TempData["Sucesso"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle"></i> @TempData["Sucesso"]
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        }
+
+        @if (TempData["Erro"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> @TempData["Erro"]
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        }
+
+        <!-- Cabeçalho -->
+        <div class="d-flex justify-content-between align-items-center mb-4 p-3 bg-dark text-white rounded shadow-sm">
+            <h2 class="mb-0"><i class="fas fa-futbol"></i> Partidas</h2>
+
+            <div class="d-flex">
+                <a href="@Url.Action("GerarPartidas", "Partida")" class="btn btn-warning mr-2">
+                    <i class="fas fa-cogs"></i> Gerar Partidas
+                </a>
+                <a href="@Url.Action("Create", "Partida")" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Nova Partida
+                </a>
+            </div>
+        </div>
+
+        <!-- Tabela -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped shadow-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().TimeCasa.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().TimeFora.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Data)</th>
+                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().GolsTimeCasa)</th>
+                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().GolsTimeFora)</th>
+                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Local)</th>
+                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Resultado)</th>
+                        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Rodada)</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.TimeCasa.Nome)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TimeFora.Nome)</td>
+                            <td>@item.Data.ToString("dd/MM/yyyy")</td>
+                            <td>@item.GolsTimeCasa</td>
+                            <td>@item.GolsTimeFora</td>
+                            <td>@item.Local</td>
+                            <td>@item.Resultado</td>
+                            <td>@item.Rodada</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-sm btn-outline-primary" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-sm btn-outline-info" title="Detalhes">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-sm btn-outline-danger" title="Excluir">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<!-- Scripts Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
