@@ -28,7 +28,7 @@ Liga_Futebol │ ├── App_Start/ # Configurações iniciais da aplicação 
 
 1. Clone este repositório:
    ```bash
-   git clone
+   git clone https://github.com/LucasGabrielSousaDaSilva/Liga_Futebol.git
 2. Abra o arquivo Liga_Futebol.sln no Visual Studio.
 
 3. Configure a string de conexão com seu banco SQL Server em Web.config.
