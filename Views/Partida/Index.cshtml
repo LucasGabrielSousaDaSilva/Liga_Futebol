@@ -62,21 +62,21 @@
     <div class="conteudo-branco">
 
         <!-- Mensagens -->
-        @if (TempData["Sucesso"] != null)
-        {
+@if (TempData["Sucesso"] != null)
+{
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="fas fa-check-circle"></i> @TempData["Sucesso"]
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
             </div>
-        }
+}
 
-        @if (TempData["Erro"] != null)
-        {
+@if (TempData["Erro"] != null)
+{
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <i class="fas fa-exclamation-triangle"></i> @TempData["Erro"]
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
             </div>
-        }
+}
 
         <!-- Cabeçalho -->
         <div class="d-flex justify-content-between align-items-center mb-4 p-3 bg-dark text-white rounded shadow-sm">
@@ -85,7 +85,7 @@
             <div class="d-flex">
                 <a href="@Url.Action("GerarPartidas", "Partida")" class="btn btn-warning mr-2">
                     <i class="fas fa-cogs"></i> Gerar Partidas
-                </a>
+</a>
                 <a href="@Url.Action("Create", "Partida")" class="btn btn-success">
                     <i class="fas fa-plus"></i> Nova Partida
                 </a>
@@ -96,7 +96,7 @@
         <div class="table-responsive">
             <table class="table table-bordered table-hover table-striped shadow-sm">
                 <thead class="thead-dark">
-                    <tr>
+    <tr>
                         <th>@Html.DisplayNameFor(model => model.FirstOrDefault().TimeCasa.Nome)</th>
                         <th>@Html.DisplayNameFor(model => model.FirstOrDefault().TimeFora.Nome)</th>
                         <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Data)</th>
@@ -106,12 +106,12 @@
                         <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Resultado)</th>
                         <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Rodada)</th>
                         <th class="text-center">Ações</th>
-                    </tr>
+    </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
+    @foreach (var item in Model)
+    {
+        <tr>
                             <td>@Html.DisplayFor(modelItem => item.TimeCasa.Nome)</td>
                             <td>@Html.DisplayFor(modelItem => item.TimeFora.Nome)</td>
                             <td>@item.Data.ToString("dd/MM/yyyy")</td>
@@ -130,9 +130,9 @@
                                 <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-sm btn-outline-danger" title="Excluir">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
-                            </td>
-                        </tr>
-                    }
+            </td>
+        </tr>
+    }
                 </tbody>
             </table>
         </div>

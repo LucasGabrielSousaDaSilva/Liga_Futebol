@@ -8,7 +8,11 @@
     <div class="card p-4 shadow-lg rounded-4 bg-light" style="min-width: 600px; max-width: 700px; width: 100%;">
         <h2 class="text-center text-danger mb-3">🗑️ Remover Jogador</h2>
         <p class="text-center text-secondary">Tem certeza que deseja excluir o jogador abaixo?</p>
-        <hr />
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Time.Nome)
+        </dt>
 
         <dl class="row">
             <dt class="col-sm-4 fw-bold">Time</dt>
@@ -37,15 +41,15 @@
 
             <dt class="col-sm-4 fw-bold">Pé Preferido</dt>
             <dd class="col-sm-8">@Html.DisplayFor(model => model.PePreferido)</dd>
-        </dl>
+    </dl>
 
         @using (Html.BeginForm())
         {
-            @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
             <div class="d-flex justify-content-between mt-4">
                 <input type="submit" value="❌ Confirmar Exclusão" class="btn btn-danger fw-bold px-4" />
                 @Html.ActionLink("⬅️ Cancelar", "Index", null, new { @class = "btn btn-secondary px-4 fw-bold" })
-            </div>
-        }
-    </div>
+        </div>
+    }
+</div>
 </div>

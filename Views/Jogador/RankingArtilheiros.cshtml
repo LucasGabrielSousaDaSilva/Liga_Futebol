@@ -80,26 +80,26 @@
         <div class="table-responsive">
             <table class="table table-hover table-striped table-bordered text-center bg-white shadow-sm rounded">
                 <thead class="table-primary">
-                    <tr>
+        <tr>
                         <th>Posição</th>
-                        <th>Jogador</th>
-                        <th>Time</th>
-                        <th>Gols</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <th>Jogador</th>
+            <th>Time</th>
+            <th>Gols</th>
+        </tr>
+    </thead>
+    <tbody>
                     @for (int i = 0; i < outros.Count; i++)
-                    {
+        {
                         var jogador = outros[i];
-                        <tr>
+            <tr>
                             <td>@(i + 4)º</td>
                             <td>@jogador.JogadorNome</td>
                             <td>@jogador.TimeNome</td>
                             <td>@jogador.TotalGols</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            </tr>
+        }
+    </tbody>
+</table>
         </div>
     </div>
 }

@@ -12,7 +12,11 @@
 <div class="container mt-5 d-flex justify-content-center">
     <div class="card shadow-lg p-4 bg-light" style="max-width: 600px; width: 100%;">
         <h2 class="text-center text-danger">Excluir Partida</h2>
-        <hr />
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeCasa.Nome)
+        </dt>
 
         <h4 class="text-secondary text-center">Tem certeza de que deseja excluir esta partida?</h4>
         <dl class="row mt-4">
@@ -39,16 +43,16 @@
 
             <dt class="col-sm-4">Rodada</dt>
             <dd class="col-sm-8">@Model.Rodada</dd>
-        </dl>
+    </dl>
 
         @using (Html.BeginForm())
         {
-            @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
             <div class="text-center mt-4">
                 <input type="submit" value="Excluir" class="btn btn-danger me-2" />
                 @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-secondary" })
-            </div>
-        }
-    </div>
+        </div>
+    }
+</div>
 </div>

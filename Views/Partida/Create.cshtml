@@ -14,64 +14,77 @@
         <h2 class="text-center text-primary">Criar Partida</h2>
         <hr />
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Partida</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group mb-3">
                 @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "form-label" })
                 @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
             </div>
+        </div>
 
             <div class="form-group mb-3">
                 @Html.LabelFor(model => model.TimeCasaId, "Time Casa", htmlAttributes: new { @class = "form-label" })
                 @Html.DropDownList("TimeCasaId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TimeCasaId, "", new { @class = "text-danger" })
             </div>
+        </div>
 
             <div class="form-group mb-3">
                 @Html.LabelFor(model => model.TimeForaId, "Time Fora", htmlAttributes: new { @class = "form-label" })
                 @Html.DropDownList("TimeForaId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TimeForaId, "", new { @class = "text-danger" })
             </div>
+        </div>
 
             <div class="form-group mb-3">
                 @Html.LabelFor(model => model.GolsTimeCasa, htmlAttributes: new { @class = "form-label" })
                 @Html.EditorFor(model => model.GolsTimeCasa, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.GolsTimeCasa, "", new { @class = "text-danger" })
             </div>
+        </div>
 
             <div class="form-group mb-3">
                 @Html.LabelFor(model => model.GolsTimeFora, htmlAttributes: new { @class = "form-label" })
                 @Html.EditorFor(model => model.GolsTimeFora, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.GolsTimeFora, "", new { @class = "text-danger" })
             </div>
+        </div>
 
             <div class="form-group mb-3">
                 @Html.LabelFor(model => model.Local, htmlAttributes: new { @class = "form-label" })
                 @Html.EditorFor(model => model.Local, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Local, "", new { @class = "text-danger" })
             </div>
+        </div>
 
             <div class="form-group mb-3">
                 @Html.LabelFor(model => model.Resultado, htmlAttributes: new { @class = "form-label" })
                 @Html.EnumDropDownListFor(model => model.Resultado, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Resultado, "", new { @class = "text-danger" })
             </div>
+        </div>
 
             <div class="form-group mb-3">
                 @Html.LabelFor(model => model.Rodada, htmlAttributes: new { @class = "form-label" })
                 @Html.EditorFor(model => model.Rodada, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Rodada, "", new { @class = "text-danger" })
             </div>
+        </div>
 
             <div class="text-center">
                 <input type="submit" value="Criar" class="btn btn-primary me-2" />
                 @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-secondary" })
-            </div>
-        }
+    </div>
+}
     </div>
 </div>
 

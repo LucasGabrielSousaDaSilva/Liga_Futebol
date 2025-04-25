@@ -60,7 +60,7 @@ namespace Liga_Futebol.Models
             public ICollection<EstatisticaPartida> Estatisticas { get; set; }
         public ICollection<Time> Times { get; set; } // Adicionando a propriedade de navegação para Time
 
-        public int TimeId { get; set; } // Chave estrangeira para a tabela Time
+            public int TimeId { get; set; } // Chave estrangeira para a tabela Time
 
     }
 }

@@ -86,18 +86,18 @@
     <div class="alert alert-warning">A liga ainda não está apta (faltam dados nos times ou comissão técnica).</div>
 }
 @if (Model.Classificacao == null || Model.Classificacao.Count == 0)
-{
+        {
     <div class="alert alert-warning">Nenhum dado encontrado.</div>
-}
-else
-{
+        }
+        else
+        {
     <div class="alert alert-info">A liga está apta para gerar partidas.</div>
-}
+        }
 
 
 <table class="table table-dark table-striped">
-    <thead>
-        <tr>
+            <thead>
+                <tr>
             <th>#</th>
             <th>Clube</th>
             <th>Pts</th>
@@ -107,11 +107,11 @@ else
             <th>GM</th>
             <th>GC</th>
             <th>SG</th>
-        </tr>
-    </thead>
-    <tbody>
+                </tr>
+            </thead>
+            <tbody>
         @for (int i = 0; i < Model.Classificacao.Count; i++)
-        {
+                {
             var item = Model.Classificacao[i];
             <tr class="@GetClassColor(i + 1)">
                 <td>@(i + 1)</td>
@@ -123,7 +123,20 @@ else
                 <td>@item.GolsPro</td>
                 <td>@item.GolsContra</td>
                 <td>@item.SaldoGols</td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </section>
+        <section>
+            <h3>Últimos Jogos</h3>
+
+
+            <!-- Aqui você pode adicionar uma lista ou tabela com os últimos jogos -->
+        </section>
+        <section>
+            <h3>Jogadores em Destaque</h3>
+            <!-- Aqui você pode adicionar uma lista ou tabela com os jogadores em destaque -->
+        </section>
+</main>

@@ -42,16 +42,16 @@
 
                 <dt class="col-sm-5">Cartões Vermelhos</dt>
                 <dd class="col-sm-7">@Html.DisplayFor(m => m.CartoesVermelhos)</dd>
-            </dl>
+    </dl>
 
             @using (Html.BeginForm())
             {
-                @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
                 <div class="text-end mt-4">
                     <input type="submit" value="Excluir" class="btn btn-danger px-4 me-2" />
                     <a href="@Url.Action("Index")" class="btn btn-secondary px-4">Cancelar</a>
-                </div>
-            }
         </div>
+    }
+</div>
     </div>
 </div>

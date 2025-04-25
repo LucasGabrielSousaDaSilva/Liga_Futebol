@@ -17,10 +17,15 @@
         </div>
 
         <div class="card-body">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                @Html.HiddenFor(model => model.Id)
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Jogador</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="row">
@@ -28,66 +33,84 @@
                         @Html.LabelFor(m => m.Nome)
                         @Html.EditorFor(m => m.Nome, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
-                    </div>
+            </div>
                     <div class="col-md-6 mb-3">
                         @Html.LabelFor(m => m.DataNascimento)
                         @Html.EditorFor(m => m.DataNascimento, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                         @Html.ValidationMessageFor(m => m.DataNascimento, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         @Html.LabelFor(m => m.Nacionalidade)
                         @Html.EditorFor(m => m.Nacionalidade, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(m => m.Nacionalidade, "", new { @class = "text-danger" })
-                    </div>
+            </div>
                     <div class="col-md-6 mb-3">
                         @Html.LabelFor(m => m.Posicao)
                         @Html.EnumDropDownListFor(m => m.Posicao, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Posicao, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Posicao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Posicao, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Posicao, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         @Html.LabelFor(m => m.NumCamisa)
                         @Html.EditorFor(m => m.NumCamisa, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(m => m.NumCamisa, "", new { @class = "text-danger" })
-                    </div>
+            </div>
                     <div class="col-md-4 mb-3">
                         @Html.LabelFor(m => m.Altura)
                         @Html.EditorFor(m => m.Altura, new { htmlAttributes = new { @class = "form-control", step = "0.01" } })
                         @Html.ValidationMessageFor(m => m.Altura, "", new { @class = "text-danger" })
-                    </div>
+        </div>
                     <div class="col-md-4 mb-3">
                         @Html.LabelFor(m => m.Peso)
                         @Html.EditorFor(m => m.Peso, new { htmlAttributes = new { @class = "form-control", step = "0.1" } })
                         @Html.ValidationMessageFor(m => m.Peso, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+            </div>
+        </div>
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         @Html.LabelFor(m => m.PePreferido)
                         @Html.EnumDropDownListFor(m => m.PePreferido, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.PePreferido, "", new { @class = "text-danger" })
-                    </div>
+        </div>
                     <div class="col-md-6 mb-3">
                         @Html.LabelFor(m => m.TimeId, "Time")
-                        @Html.DropDownList("TimeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("TimeId", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.TimeId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+            </div>
+        </div>
 
                 <div class="text-end mt-4">
                     <button type="submit" class="btn btn-success px-4">
                         <i class="fas fa-save me-2"></i>Salvar Alterações
                     </button>
-                </div>
+            </div>
             }
         </div>
     </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
