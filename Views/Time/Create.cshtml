@@ -53,7 +53,7 @@
         <div class="form-group row">
             @Html.LabelFor(model => model.DataFundacao, htmlAttributes: new { @class = "col-sm-2 col-form-label font-weight-bold" })
             <div class="col-sm-10">
-                @Html.EditorFor(model => model.DataFundacao, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.EditorFor(model => model.DataFundacao, new { htmlAttributes = new { @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.DataFundacao, "", new { @class = "text-danger" })
             </div>
         </div>

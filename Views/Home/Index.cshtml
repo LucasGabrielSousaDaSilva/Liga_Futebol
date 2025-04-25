@@ -81,17 +81,17 @@
     </div>
 </div>
 
-@if (!Model.Status)
+@if (Model.Status == false)
 {
     <div class="alert alert-warning">A liga ainda não está apta (faltam dados nos times ou comissão técnica).</div>
+}
+else 
+{
+    <div class="alert alert-info">A liga está apta para gerar partidas.</div>
 }
 @if (Model.Classificacao == null || Model.Classificacao.Count == 0)
 {
     <div class="alert alert-warning">Nenhum dado encontrado.</div>
-}
-else
-{
-    <div class="alert alert-info">A liga está apta para gerar partidas.</div>
 }
 
 

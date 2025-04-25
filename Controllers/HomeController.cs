@@ -87,16 +87,22 @@ namespace Liga_Futebol.Controllers
 
         private bool VerificarLigaApta(List<Time> times)
         {
-            if (times.Count < 19)
+            if (times.Count != 20)
                 return false;
 
             //foreach (var time in times)
             //{
-            //    if (time.Jogadores == null || time.Jogadores.Count < 15)
+            //    if (time.Jogadores == null || time.Jogadores.Count < 20)
+            //    {
+            //        ModelState.AddModelError("Jogadores", "Tem que conter 30 Jogadores");
             //        return false;
+            //    }
 
-            //    if (time.ComissaoTecnica == null || time.ComissaoTecnica.Count < 5)
+            //    if (time.ComissaoTecnica == null || time.ComissaoTecnica.Count < 4)
+            //    {
+            //        ModelState.AddModelError("ComissaoTecnica", "Tem que conter 5 membros na comissão técnica");
             //        return false;
+            //    }
 
             //    var cargosDistintos = time.ComissaoTecnica.Select(c => c.Cargo).Distinct().Count();
             //    if (cargosDistintos < 5)

@@ -67,6 +67,11 @@ namespace Liga_Futebol.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nome,DataNascimento,Nacionalidade,Posicao,NumCamisa,Altura,Peso,PePreferido,TimeId")] Jogador jogador)
         {
+            // Verifica se o jogador já existe com o mesmo numero de camisa
+            if (db.Jogadores.Any(j => j.NumCamisa == jogador.NumCamisa && j.TimeId == jogador.TimeId))
+            {
+                ModelState.AddModelError("NumCamisa", "Já existe um jogador com esse número de camisa no time selecionado.");
+            }
             if (ModelState.IsValid)
             {
                 db.Jogadores.Add(jogador);
@@ -101,6 +106,11 @@ namespace Liga_Futebol.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Nome,DataNascimento,Nacionalidade,Posicao,NumCamisa,Altura,Peso,PePreferido,TimeId")] Jogador jogador)
         {
+            // Verifica se o jogador já existe com o mesmo numero de camisa
+                if (db.Jogadores.Any(j => j.NumCamisa == jogador.NumCamisa && j.TimeId == jogador.TimeId))
+                {
+                    ModelState.AddModelError("NumCamisa", "Já existe um jogador com esse número de camisa no time selecionado.");
+                }
             if (ModelState.IsValid)
             {
                 db.Entry(jogador).State = EntityState.Modified;

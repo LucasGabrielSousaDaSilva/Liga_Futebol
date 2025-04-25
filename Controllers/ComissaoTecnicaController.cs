@@ -64,6 +64,19 @@ namespace Liga_Futebol.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nome,DataNascimento,Cargo,TimeId")] ComissaoTecnica comissaoTecnica)
         {
+            if (comissaoTecnica.DataNascimento > DateTime.Now)
+            {
+                ModelState.AddModelError("DataNascimento", "A data de nascimento não pode ser futura.");
+            }
+
+            //Verificar duplicidade de Cargo
+            var comissaoExistente = db.ComissoesTecnicas
+                .FirstOrDefault(ct => ct.TimeId == comissaoTecnica.TimeId && ct.Cargo == comissaoTecnica.Cargo);
+            if (comissaoExistente != null)
+            {
+                ModelState.AddModelError("Cargo", "Já existe uma comissão técnica com esse cargo para o time selecionado.");
+            }
+
             if (ModelState.IsValid)
             {
                 db.ComissoesTecnicas.Add(comissaoTecnica);
@@ -98,6 +111,17 @@ namespace Liga_Futebol.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Nome,DataNascimento,Cargo,TimeId")] ComissaoTecnica comissaoTecnica)
         {
+            if (comissaoTecnica.DataNascimento > DateTime.Now)
+            {
+                ModelState.AddModelError("DataNascimento", "A data de nascimento não pode ser futura.");
+            }
+            //Verificar duplicidade de Cargo
+            var comissaoExistente = db.ComissoesTecnicas
+                .FirstOrDefault(ct => ct.TimeId == comissaoTecnica.TimeId && ct.Cargo == comissaoTecnica.Cargo && ct.Id != comissaoTecnica.Id);
+            if (comissaoExistente != null)
+            {
+                ModelState.AddModelError("Cargo", "Já existe uma comissão técnica com esse cargo para o time selecionado.");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(comissaoTecnica).State = EntityState.Modified;
